@@ -24,6 +24,11 @@
       <li><a href="https://www.stuartellis.name/articles/mac-setup/" target="_blank">stuartellis.name/articles/mac-setup</a></li>
       <li><a href="https://www.michaeluloth.com/how-to-set-up-a-mac-for-web-development">michaeluloth.com/how-to-set-up-a-mac-for-web-development</a></li>
     </ul>
+    
+    <h3>Fix the "Missing write access" error when using npm</h3>
+    <p><em>Pay attention to the folder listed by the error message. If it’s different, update the chown command accordingly.</em></p>
+    <p>Run this command:</p>
+    <code>sudo chown -R $USER /usr/local/lib/node_modules</code>
   </section>
 
 </body>
