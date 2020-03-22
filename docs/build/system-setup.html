@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-
 <head>
   <meta charset="utf-8">
+  <meta tag="viewport" content="width=device-width, initial-scale=1.0">
   <title>Developer Environment Setup - Ryan Todd Garza</title>
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
@@ -13,6 +11,8 @@
     <h2>Table of Contents</h2>
     <ul>
       <li><a href="#macOSSetup">macOS Setup Guide</a></li>
+      <li><a href="#sublimeTextPackages">Sublime Text Packages</a></li>
+      <li><a href="#otherApps">Other Apps</a></li>
     </ul>
   </section>
 
@@ -22,13 +22,50 @@
     <ul>
       <li><a href="https://sourabhbajaj.com/mac-setup/" target="_blank">sourabhbajaj.com/mac-setup/</a></li>
       <li><a href="https://www.stuartellis.name/articles/mac-setup/" target="_blank">stuartellis.name/articles/mac-setup</a></li>
-      <li><a href="https://www.michaeluloth.com/how-to-set-up-a-mac-for-web-development">michaeluloth.com/how-to-set-up-a-mac-for-web-development</a></li>
+      <li><a href="https://www.michaeluloth.com/how-to-set-up-a-mac-for-web-development" target="_blank">michaeluloth.com/how-to-set-up-a-mac-for-web-development</a></li>
     </ul>
     
     <h3>Fix the "Missing write access" error when using npm</h3>
     <p><em>Pay attention to the folder listed by the error message. If it’s different, update the chown command accordingly.</em></p>
     <p>Run this command:</p>
-    <code>sudo chown -R $USER /usr/local/lib/node_modules</code>
+    <code>sudo chown -R $USER /usr/local/lib/node_modules</code>  
+
+    <h3>Enable key repeat in OS X for Sublime Text in Vim mode</h3>
+    <p>Mac OS X Lion introduced a new, iOS-like context menu when you press and hold a key that enables you to choose a character from a menu of options. You can disable this feature for just Sublime Text by issuing the following command in your terminal (*not* the Sublime Text console):</p>
+    <code>defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false</code>
+    <p><i>Note: replace com.sublimetext.3 with whichever version of Sublime Text you are running eg. 'com.sublimetext.2'</i></p>
+    <p>If you want this feature disabled globally, you can enter:</p>
+    <code>defaults write -g ApplePressAndHoldEnabled -bool false</code>
+  </section>
+
+  <section id="sublimeTextPackages">
+    <h2>Sublime Text Packages</h2>
+    <ul>
+      <li><a href="https://github.com/sloria/sublime-html5-boilerplate" target="_blank">HTML Boilerplate</a>: A Sublime Text 2/3 snippet to generate the HTML5 Boilerplate template.</li>
+      <li><a href="https://github.com/jonschlinkert/sublime-markdown-extended" target="_blank">Markdown Extended</a>: Markdown syntax highlighter.</li>
+      <li><a href="https://github.com/jonschlinkert/sublime-monokai-extended" target="_blank">Monokai Extended</a>: Extends Monokai from Soda with additional syntax highlighting for Markdown, LESS, HTML, Handlebars and more.</li>
+      <li><a href="https://github.com/facelessuser/MarkdownPreview" target="_blank">Markdown Preview</a>: Markdown preview and build plugin for Sublime Text</li>
+    </ul>
+  </section>
+
+  <section id="otherApps">
+    <h2>Other Apps</h2>
+    <p>A list of apps that are generally good to use and can come in handy in day to day tasks.</p>
+
+    <h3>Developer Tools</h3>
+    <ul>
+      <li><a href="https://www.google.com/intl/en/chrome/browser/" target="_blank">Google Chrome</a>: Chrome is a developer friendly browser with powerful development tools built in to it.</li>
+    </ul>
+
+    <h3>Productivity</h3>
+    <ul>
+      <li><a href="https://www.dropbox.com/" target="_blank">Dropbox</a>: File syncing to the cloud. It syncs files across all devices (laptop, mobile, tablet), and serves as a backup.</li>
+    </ul>
+
+    <h3>Other</h3>
+    <ul>
+      <li></li>
+    </ul>
   </section>
 
 </body>

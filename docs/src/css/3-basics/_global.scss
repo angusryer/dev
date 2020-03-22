@@ -1,0 +1,22 @@
+// file: _global.scss
+
+html {
+  background: white; // temp style, remove after
+}
+
+body {
+  padding: 15px;
+}
+
+a {
+  color: #39c;
+}
+
+img {
+  max-width: 100%; // temp style, remove after
+}
+
+.page-content-wrapper {
+  max-width: 1000px;
+  margin: auto;
+}
