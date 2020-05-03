@@ -2,10 +2,17 @@
 
 ## Table of Contents
 
-- [macOS Setup Guide](#macos-setup-guide)
+- [macOS Setup Guides](#macos-setup-guides)
+- [System Preferences](#system-preferences)
 - [Xcode](#xcode)
 - [Homebrew](#homebrew)
+- [Terminal](#terminal)
+    - [Oh My Zsh](#oh-my-zsh)
 - [Git](#git)
+    - [SSH Config for GitHub](ssh-config-for-github)
+    - [Git Ignore (global](git-ignore-global)
+    - [Git GUIs](git-guis)
+- [Vim](#vim)
 - [rsync](#rsync)
 - [Sublime Text](#sublime-text)
 - [Sublime Text Packages](#sublime-text-packages)
@@ -13,39 +20,59 @@
 - [Local React Environment](#local-react-environment)
 - [Other Apps](#other-apps)
 
-## macOS Setup Guide
-
-### Links
+## macOS Setup Guides
 
 - [sourabhbajaj.com/mac-setup/](https://sourabhbajaj.com/mac-setup/)
 - [stuartellis.name/articles/mac-setup](https://www.stuartellis.name/articles/mac-setup/)
 - [michaeluloth.com/how-to-set-up-a-mac-for-web-development](https://www.michaeluloth.com/how-to-set-up-a-mac-for-web-development)
 - [mallinson.ca/posts/5/the-perfect-web-development-environment-for-your-new-mac](https://mallinson.ca/posts/5/the-perfect-web-development-environment-for-your-new-mac)
-### Fix the "Missing write access" error when using npm
 
-*Pay attention to the folder listed by the error message. If it’s different, update the chown command accordingly.*
+## System Preferences
 
-Run this command:
+### Initial Setup
 
-```sh
-sudo chown -R $USER /usr/local/lib/node_modules
-```
+The first thing you should do is update your OS to the latest version to have a more secure OS. To do that go: *Apple menu () > About This Mac > Software Update*.
 
-### Enable key repeat in OS X for Sublime Text in Vim mode
+### Users & Groups
 
-Mac OS X Lion introduced a new, iOS-like context menu when you press and hold a key that enables you to choose a character from a menu of options. You can disable this feature for just Sublime Text by issuing the following command in your terminal (*not* the Sublime Text console):
+- Enable *Show fast user switching menu* and select desired desplay option.
+- Set up Password, Apple ID, Picture, etc.
 
-```sh
-defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
-```
+### Trackpad
 
-*Note: replace com.sublimetext.3 with whichever version of Sublime Text you are running eg. 'com.sublimetext.2'*
+- Point & Click
+    - Enable *Tap to click with one finger*
+- Scroll & Zoom
+    - Uncheck all except *Zoom in or out* and *Scroll direction: Natural*
+- More Gestures
+    - Uncheck *Notification Center*
 
-If you want this feature disabled globally, you can enter:
+### Dock
 
-```sh
-defaults write -g ApplePressAndHoldEnabled -bool false
-```
+- Uncheck
+    - *Double-click a window's title bar to*
+    - *Animate opening applications*
+    - *Show recent applications in Dock*
+- Check
+    - *Automatically hide and show the Dock*
+
+### Accessibility
+
+- *Display* Check *Reduce transparency*
+
+### Finder
+
+- General
+    - Change New finder window show to open in your *Home Directory*
+- Sidebar
+    - Add Home and your Code Directory
+    - Uncheck all Shared boxes
+    - Uncheck *Tags*
+
+### Menu Bar
+
+- Remove the *Display* and *Bluetooth* icons
+- Change battery to *Show percentage*
 
 ## Xcode
 
@@ -65,11 +92,7 @@ It'll prompt you to install the command line tools. Follow the instructions and 
 
 ### Installation
 
-Before you can run Homebrew you need to have the Command Line Tools for Xcode installed. It include compilers and other tools that will allow you to build things from source, and if you are missing this it's available through the App Store > Updates. You can also install it from the terminal by running the following:
-
-```
-$ sudo xcode-select --install
-```
+Before you can run Homebrew you need to have the Command Line Tools for Xcode installed. It include compilers and other tools that will allow you to build things from source. See [previous section](#xcode).
 
 To install Homebrew run the following in a terminal, hit Enter, and follow the steps on the screen:
 
@@ -85,16 +108,140 @@ $ brew doctor
 
 If everything is good, you should see no warnings, and a message that you are "ready to brew!".
 
+## Terminal
+
+### Oh My Zsh
+
+[Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) is an open source, community-driven framework for managing your zsh configuration. It comes with a bunch of features out of the box and improves your terminal experience.
+
+Install Oh My Zsh:
+
+```
+$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+To apply any configuration changes you make you need to either start new shell instance or run:
+
+```
+$ source ~/.zshrc
+```
+
+#### Fix Folder permission "Insecure completion-dependent directories detected"
+
+Add `ZSH_DISABLE_COMPFIX=true` to the top of your .zshrc file. Reload the file by running `source .zshrc`.
+
 ## Git
 
 Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
-For installation and configuration *see [links](#links)*
+Install Git:
+
+```
+$ brew install git
+```
+
+When done, to test that it installed properly you can run:
+
+```
+$ git --version
+```
+
+And which git should output `/usr/local/bin/git`.
+
+Next, we'll define your Git user (should be the same name and email you use for [GitHub](https://github.com/):
+
+```
+$ git config --global user.name "Your Name Here"
+$ git config --global user.email "your_email@youremail.com"
+```
+
+They will get added to your `.gitconfig` file.
+
+To push code to your GitHub repositories, we're going to use the recommended HTTPS method (versus SSH). To prevent git from asking for your username and password every time you push a commit you can cache your credentials by running the following command, as described in the [instructions](https://help.github.com/articles/caching-your-github-password-in-git/).
+
+```
+$ git config --global credential.helper osxkeychain
+```
+
+### SSH Config for GitHub
+
+The instructions below are referenced from the [official documentation](https://help.github.com/articles/generating-ssh-keys).
+
+#### Check for existing SSH keys
+
+First, we need to check for existing SSH keys by running:
+
+```
+$ ls -al ~/.ssh
+# Lists the files in your .ssh directory, if they exist
+```
+
+Check the directory listing to see if you have files named either `id_rsa.pub` or `id_dsa.pub`. If you don't have either of those files then read on, otherwise skip the next section.
+
+#### Generate a New SSH Key
+
+If you don't have an SSH key you need to generate one. To do that you need to run the commands below, and make sure to substitute the placeholder with your email. The default settings are preferred, so when you're asked to "enter a file in which to save the key," just press Enter to continue.
+
+```
+$ ssh-keygen -t rsa -C "your_email@example.com"
+# Creates a new ssh key, using the provided email as a label
+```
+
+#### Add Your SSH Key to the ssh-agent
+
+Run the following commands to add your SSH key to the `ssh-agent`.
+
+```
+$ eval "$(ssh-agent -s)"
+```
+
+If you're running macOS Sierra 10.12.2 or later, you will need to modify your `~/.ssh/config` file to automatically load keys into the ssh-agent and store passphrases in your keychain. If no file exists, create one and add:
+
+```
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsa
+```
+
+No matter what operating system version you run you need to run this command to complete this step:
+
+```
+$ ssh-add -K ~/.ssh/id_rsa
+```
+
+#### Adding a new SSH key to your GitHub Account
+
+The last step is to let GitHub know about your SSH key. Run this command to copy your key to your clipboard:
+
+```
+$ pbcopy < ~/.ssh/id_rsa.pub
+```
+
+Then go to GitHub and [input your new SSH key](https://github.com/settings/ssh/new). Paste your key in the "Key" textbox and pick a name that represents the computer you're currently using.
+
+### Git Ignore (global)
+
+Create the file `~/.gitignore`. Add files that are almost always ignored in all Git repositories or the contents of [macOS specific .gitignore](https://github.com/github/gitignore/blob/master/Global/macOS.gitignore) maintained by GitHub itself.
+
+followed by running the command below, in terminal:
+
+```
+$ git config --global core.excludesfile ~/.gitignore
+```
 
 ### Git GUIs
 
+I don't use them but they exist.
+
 - [Sourcetree](https://www.sourcetreeapp.com/)
 - [GitHub Desktop](https://desktop.github.com/)
+
+## Vim
+
+### System Settings
+
+Open *System Preferences > Keyboard*. Set Key Repeat one notch below *Fast* and Delay Until Repeat to one notch below *Short*. To map the caps lock key to escape, click the *Modifier Keys...* button. In the dialog you can choose to map the caps lock key to escape.
 
 ## Rsync
 
@@ -183,6 +330,23 @@ export EDITOR="/Applications/Sublime Text.app/Contents/MacOS/Sublime Text"
 
 ### Troubleshooting
 
+#### Enable key repeat in OS X for Sublime Text in Vim mode
+
+Mac OS X Lion introduced a new, iOS-like context menu when you press and hold a key that enables you to choose a character from a menu of options. You can disable this feature for just Sublime Text by issuing the following command in your terminal (*not* the Sublime Text console):
+
+```sh
+defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
+```
+
+*Note: replace com.sublimetext.3 with whichever version of Sublime Text you are running eg. 'com.sublimetext.2'*
+
+If you want this feature disabled globally, you can enter:
+
+```sh
+defaults write -g ApplePressAndHoldEnabled -bool false
+```
+
+
 #### Autoprefixer
 
 **"Error: Browserlist: caniuse-lite is outdated."**
@@ -227,6 +391,18 @@ Switching between versions
 
 ```sh
 nvm use 12.16.X
+```
+
+### Troubleshooting
+
+### Fix the "Missing write access" error when using npm
+
+*Pay attention to the folder listed by the error message. If it’s different, update the chown command accordingly.*
+
+Run this command:
+
+```sh
+sudo chown -R $USER /usr/local/lib/node_modules
 ```
 
 ## Local React Environment
