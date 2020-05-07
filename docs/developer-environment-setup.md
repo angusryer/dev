@@ -38,6 +38,17 @@ The first thing you should do is update your OS to the latest version to have a 
 - Enable *Show fast user switching menu* and select desired desplay option.
 - Set up Password, Apple ID, Picture, etc.
 
+### Keyboard
+
+Open *System Preferences > Keyboard*.
+
+- Set *Key Repeat* to *Fast* and Delay Until Repeat to one notch below *Short*.
+- Remap *CapsLock* to *Esc* for quicker Vim mode switching. Click the *Modifier Keys...* button. In the dialog you can choose to map the caps lock key to escape.
+
+#### Filco Majestouch
+
+For keyboards not set up for macOS, swap the *Option* and *Command* keys. Open *System Preferences > Keyboard > Modifier Keys...* and remap both keys.
+
 ### Trackpad
 
 - Point & Click
@@ -59,6 +70,10 @@ The first thing you should do is update your OS to the latest version to have a 
 ### Accessibility
 
 - *Display* Check *Reduce transparency*
+
+### Sound
+
+- Disable *Play user interface sound effects*
 
 ### Finder
 
@@ -109,6 +124,22 @@ $ brew doctor
 If everything is good, you should see no warnings, and a message that you are "ready to brew!".
 
 ## Terminal
+
+### iTerm2
+
+#### Font
+
+Install Fira Code by running:
+
+```
+brew tap homebrew/cask-fonts && brew cask install font-fira-code
+```
+
+Fira Code repo is at [github.com/tonsky/FiraCode](https://github.com/tonsky/FiraCode).
+
+#### Color Theme
+
+Download `Tender.itermcolors` from [github.com/tombell/tender-iterm2](https://github.com/tombell/tender-iterm2). Go to *Preferences > Profiles > Colors* and select *Import...* from the *Color Presets...* dropdown. Import the theme and select it from the *Color Presets...* dropdown.
 
 ### Oh My Zsh
 
@@ -239,9 +270,11 @@ I don't use them but they exist.
 
 ## Vim
 
-### System Settings
+### Color Scheme
 
-Open *System Preferences > Keyboard*. Set Key Repeat one notch below *Fast* and Delay Until Repeat to one notch below *Short*. To map the caps lock key to escape, click the *Modifier Keys...* button. In the dialog you can choose to map the caps lock key to escape.
+Download `monokai.vim` from [github.com/crusoexia/vim-monokai](https://github.com/crusoexia/vim-monokai) and add it to the `~/.vim/colors` directory. If not already in the `.vimrc` file, add `colorscheme monokai`.
+
+More useful color schemes at [github.com/rafi/awesome-vim-colorschemes](https://github.com/rafi/awesome-vim-colorschemes).
 
 ## Rsync
 
