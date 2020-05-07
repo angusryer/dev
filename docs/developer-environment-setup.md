@@ -384,7 +384,7 @@ export EDITOR="/Applications/Sublime Text.app/Contents/MacOS/Sublime Text"
 
 Mac OS X Lion introduced a new, iOS-like context menu when you press and hold a key that enables you to choose a character from a menu of options. You can disable this feature for just Sublime Text by issuing the following command in your terminal (*not* the Sublime Text console):
 
-```sh
+```
 defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
 ```
 
@@ -392,7 +392,7 @@ defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
 
 If you want this feature disabled globally, you can enter:
 
-```sh
+```
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
 
@@ -403,13 +403,13 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 
 Delete:
 
-```sh
+```
 /Library/Application Support/Sublime Text 3/Packages/Autoprefixer/node_modules/.bin
 ```
 
 Change directory:
 
-```sh
+```
 cd /Library/Application Support/Sublime Text 3/Packages/Autoprefixer/
 
 npm rm autoprefixer
@@ -419,27 +419,60 @@ npm install autoprefixer
 
 ## Node.js
 
+### Node Version Manager
+
+nvm is a version manager for node.js, designed to be installed per-user, and invoked per-shell.
+
 Install **Node Version Manager** with cURL.
 
-```sh
+```
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.2/install.sh | bash
 ```
+Verify installation:
 
-Install multiple versions of Node.js.
-
-```sh
-nvm install 12.16.X
 ```
+command -v nvm
+```
+which should output ``nvm`` if the installation was successful.
 
-List available versions
+### Listing Versions
 
-```sh
+To see what versions are installed:
+
+```
 nvm ls
 ```
 
+To see what versions are available to be installed:
+
+```
+nvm ls-remote
+```
+### Install Node.js Version
+
+To download, compile, and install the latest release of node, run:
+
+```
+nvm install node # "node" is an alias for the latest version
+```
+
+To install a specific version of node:
+
+```
+nvm install 6.14.4 # or 10.10.0, 8.9.1, etc
+```
+
+Node has a schedule for long-term support (LTS). Installation supports LTS arguments.
+
+```
+nvm install --lts=argon
+```
+
+### Using Versions
+
 Switching between versions
 
-```sh
+```
 nvm use 12.16.X
 ```
 
@@ -451,7 +484,7 @@ nvm use 12.16.X
 
 Run this command:
 
-```sh
+```
 sudo chown -R $USER /usr/local/lib/node_modules
 ```
 
