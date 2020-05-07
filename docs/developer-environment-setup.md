@@ -13,6 +13,7 @@
     - [Git Ignore (global](git-ignore-global)
     - [Git GUIs](git-guis)
 - [Vim](#vim)
+    - [Browsersync](#browsersync)
 - [rsync](#rsync)
 - [Sublime Text](#sublime-text)
 - [Sublime Text Packages](#sublime-text-packages)
@@ -269,6 +270,22 @@ I don't use them but they exist.
 - [GitHub Desktop](https://desktop.github.com/)
 
 ## Vim
+
+### Browsersync
+
+[browsersync.io](https://www.browsersync.io/)
+
+Install and run browser-sync inside of the project folder. Requires `node.js`. Refer to the [Node.js section](#nodejs). Install `browser-sync` globally:
+
+```
+npm install  -g browser-sync
+```
+
+After installing `browser-sync` we can run it inside any folder in our system and it will create a local server (automatically displaying the default index.html file you have in the folder).
+
+```
+browser-sync start --server --files .
+```
 
 ### Color Scheme
 
