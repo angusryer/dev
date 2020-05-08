@@ -7,17 +7,18 @@
 - [Xcode](#xcode)
 - [Homebrew](#homebrew)
 - [Terminal](#terminal)
+    - [Zsh](#zsh)
     - [Oh My Zsh](#oh-my-zsh)
+    - [rsync](#rsync)
 - [Git](#git)
     - [SSH Config for GitHub](ssh-config-for-github)
     - [Git Ignore (global](git-ignore-global)
     - [Git GUIs](git-guis)
 - [Vim](#vim)
-    - [Browsersync](#browsersync)
-- [rsync](#rsync)
 - [Sublime Text](#sublime-text)
 - [Sublime Text Packages](#sublime-text-packages)
 - [Node.js](#nodejs)
+- [Browsersync](#browsersync)
 - [Local React Environment](#local-react-environment)
 - [Other Apps](#other-apps)
 
@@ -105,7 +106,7 @@ Right click on the *Desktop* and select *Show view options*.
 For installing Xcode command line tools run:
 
 ```
-$ xcode-select --install
+xcode-select --install
 ```
 
 It will prompt you to install the command line tools. Follow the instructions and you'll have Xcode and Xcode command line tools both installed.
@@ -127,7 +128,7 @@ To install Homebrew run the following in a terminal, hit Enter, and follow the s
 Then, to be able to use brew you need to start a new terminal session. After that you should make sure everything is working by running:
 
 ```
-$ brew doctor
+brew doctor
 ```
 
 If everything is good, you should see no warnings, and a message that you are "ready to brew!".
@@ -180,18 +181,63 @@ The configuration file for zsh is called .zshrc and lives in your home folder (~
 Install Oh My Zsh:
 
 ```
-$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
 To apply any configuration changes you make you need to either start new shell instance or run:
 
 ```
-$ source ~/.zshrc
+source ~/.zshrc
 ```
 
 #### Fix Folder permission "Insecure completion-dependent directories detected"
 
 Add `ZSH_DISABLE_COMPFIX=true` to the top of your .zshrc file. Reload the file by running `source .zshrc`.
+
+### Rsync
+
+Rsync is a fast and extraordinarily versatile file copying tool. It can copy locally, to/from another host over any remote shell, or to/from a remote rsync daemon. It offers a large number of options that control every aspect of its behavior and permit very flexible specification of the set of files to be copied. It is famous for its delta-transfer algorithm, which reduces the amount of data sent over the network by sending only the differences between the source files and the existing files in the destination. Rsync is widely used for backups and mirroring and as an improved copy command for everyday use.
+
+#### Update rsync With Homebrew
+
+Install
+
+```
+brew install rsync
+```
+
+Check version
+
+```
+rsync --version
+```
+
+#### Basic Usage
+
+The basic syntax is:
+
+```
+rsync <options> <source> <destination>
+```
+
+#### Usage - Mirror Directory
+
+```
+rsync -acXNv --delete <source> <destination>
+```
+
+The options used are:
+
+- `-a`, `--archive` archive mode; equals `-rlptgoD (no -H,-A,-X)`
+- `-c`, `--checksum` skip based on checksum, not mod-time & size
+- `-X`, `--xattrs` preserve extended attributes
+- `-N`, `--crtimes` preserve create times (newness)
+- `-v`, `--verbose` increase verbosity
+
+#### Documentation
+
+- [rsync Manual](https://www.manpagez.com/man/1/rsync/)
+
 
 ## Git
 
@@ -200,13 +246,13 @@ Git is a free and open source distributed version control system designed to han
 Install Git:
 
 ```
-$ brew install git
+brew install git
 ```
 
 When done, to test that it installed properly you can run:
 
 ```
-$ git --version
+git --version
 ```
 
 And `which git` should output `/usr/local/bin/git`.
@@ -214,8 +260,8 @@ And `which git` should output `/usr/local/bin/git`.
 Next, we'll define your Git user (should be the same name and email you use for [GitHub](https://github.com/):
 
 ```
-$ git config --global user.name "Your Name Here"
-$ git config --global user.email "your_email@youremail.com"
+git config --global user.name "Your Name Here"
+git config --global user.email "your_email@youremail.com"
 ```
 
 They will get added to your `.gitconfig` file.
@@ -223,7 +269,7 @@ They will get added to your `.gitconfig` file.
 To push code to your GitHub repositories, we're going to use the recommended HTTPS method (versus SSH). To prevent git from asking for your username and password every time you push a commit you can cache your credentials by running the following command, as described in the [instructions](https://help.github.com/articles/caching-your-github-password-in-git/).
 
 ```
-$ git config --global credential.helper osxkeychain
+git config --global credential.helper osxkeychain
 ```
 
 ### SSH Config for GitHub
@@ -235,7 +281,7 @@ The instructions below are referenced from the [official documentation](https://
 First, we need to check for existing SSH keys by running:
 
 ```
-$ ls -al ~/.ssh
+ls -al ~/.ssh
 # Lists the files in your .ssh directory, if they exist
 ```
 
@@ -246,7 +292,7 @@ Check the directory listing to see if you have files named either `id_rsa.pub` o
 If you don't have an SSH key you need to generate one. To do that you need to run the commands below, and make sure to substitute the placeholder with your email. The default settings are preferred, so when you're asked to "enter a file in which to save the key," just press Enter to continue.
 
 ```
-$ ssh-keygen -t rsa -C "your_email@example.com"
+ssh-keygen -t rsa -C "your_email@example.com"
 # Creates a new ssh key, using the provided email as a label
 ```
 
@@ -255,7 +301,7 @@ $ ssh-keygen -t rsa -C "your_email@example.com"
 Run the following commands to add your SSH key to the `ssh-agent`.
 
 ```
-$ eval "$(ssh-agent -s)"
+eval "$(ssh-agent -s)"
 ```
 
 If you're running macOS Sierra 10.12.2 or later, you will need to modify your `~/.ssh/config` file to automatically load keys into the ssh-agent and store passphrases in your keychain. If no file exists, create one and add:
@@ -270,7 +316,7 @@ Host *
 No matter what operating system version you run you need to run this command to complete this step:
 
 ```
-$ ssh-add -K ~/.ssh/id_rsa
+ssh-add -K ~/.ssh/id_rsa
 ```
 
 #### Adding a new SSH key to your GitHub Account
@@ -278,7 +324,7 @@ $ ssh-add -K ~/.ssh/id_rsa
 The last step is to let GitHub know about your SSH key. Run this command to copy your key to your clipboard:
 
 ```
-$ pbcopy < ~/.ssh/id_rsa.pub
+pbcopy < ~/.ssh/id_rsa.pub
 ```
 
 Then go to GitHub and [input your new SSH key](https://github.com/settings/ssh/new). Paste your key in the "Key" textbox and pick a name that represents the computer you're currently using.
@@ -290,7 +336,7 @@ Create the file `~/.gitignore`. Add files that are almost always ignored in all 
 followed by running the command below, in terminal:
 
 ```
-$ git config --global core.excludesfile ~/.gitignore
+git config --global core.excludesfile ~/.gitignore
 ```
 
 ### Git GUIs
@@ -302,71 +348,55 @@ I don't use them but they exist.
 
 ## Vim
 
-### Browsersync
+[Vim](https://www.vim.org/) is a highly configurable text editor built to make creating and changing any kind of text very efficient. It is included as "vi" with most UNIX systems and with Apple macOS.
 
-[browsersync.io](https://www.browsersync.io/)
+### Installation
 
-Install and run browser-sync inside of the project folder. Requires `node.js`. Refer to the [Node.js section](#nodejs). Install `browser-sync` globally:
-
-```
-npm install  -g browser-sync
-```
-
-After installing `browser-sync` we can run it inside any folder in our system and it will create a local server (automatically displaying the default index.html file you have in the folder).
+To install the latest version, use homebrew:
 
 ```
-browser-sync start --server --files .
+brew install vim
 ```
+
+### The Ultimate vimrc
+
+[The Ultimate vimrc](https://github.com/amix/vimrc) is a collection of vimrc configurations to make easy the usage of vim.
+
+To download the The Ultimate vimrc, you need to install the git client. If you need install it, see the [Git section](#git).
+
+Download the vimrc files:
+
+```
+git clone https://github.com/amix/vimrc.git ~/.vim_runtime
+```
+
+To install the complete version, run:
+
+```
+sh ~/.vim_runtime/install_awesome_vimrc.sh
+```
+
+To install the basic version, run:
+
+```
+sh ~/.vim_runtime/install_basic_vimrc.sh
+```
+
+To update the vimrc scripts, run:
+
+```
+cd ~/.vim_runtime && git pull --rebase && cd -
+```
+
+### My Configs
+
+After you have installed the setup, you can create `~/.vim_runtime/my_configs.vim` to fill in any extra configurations. Current file kept in the [dotfiles](https://github.com/ryantoddgarza/dev) directory.
 
 ### Color Scheme
 
 Download `monokai.vim` from [github.com/crusoexia/vim-monokai](https://github.com/crusoexia/vim-monokai) and add it to the `~/.vim/colors` directory. If not already in the `.vimrc` file, add `colorscheme monokai`.
 
 More useful color schemes at [github.com/rafi/awesome-vim-colorschemes](https://github.com/rafi/awesome-vim-colorschemes).
-
-## Rsync
-
-Rsync is a fast and extraordinarily versatile file copying tool. It can copy locally, to/from another host over any remote shell, or to/from a remote rsync daemon. It offers a large number of options that control every aspect of its behavior and permit very flexible specification of the set of files to be copied. It is famous for its delta-transfer algorithm, which reduces the amount of data sent over the network by sending only the differences between the source files and the existing files in the destination. Rsync is widely used for backups and mirroring and as an improved copy command for everyday use.
-
-### Update rsync With Homebrew
-
-Install
-
-```
-brew install rsync
-```
-
-Check version
-
-```
-rsync --version
-```
-
-### Basic Usage
-
-The basic syntax is:
-
-```
-rsync <options> <source> <destination>
-```
-
-### Usage - Mirror Directory
-
-```
-rsync -acXNv --delete <source> <destination>
-```
-
-The options used are:
-
-- `-a`, `--archive` archive mode; equals `-rlptgoD (no -H,-A,-X)`
-- `-c`, `--checksum` skip based on checksum, not mod-time & size
-- `-X`, `--xattrs` preserve extended attributes
-- `-N`, `--crtimes` preserve create times (newness)
-- `-v`, `--verbose` increase verbosity
-
-### Documentation
-
-- [rsync Manual](https://www.manpagez.com/man/1/rsync/)
 
 ## Sublime Text
 
@@ -450,6 +480,8 @@ npm install autoprefixer
 
 ## Node.js
 
+Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+
 ### Node Version Manager
 
 nvm is a version manager for node.js, designed to be installed per-user, and invoked per-shell.
@@ -519,6 +551,22 @@ Run this command:
 sudo chown -R $USER /usr/local/lib/node_modules
 ```
 
+## Browsersync
+
+[browsersync.io](https://www.browsersync.io/) Synchronized browser testing.
+
+Install and run browser-sync inside of the project folder. Requires `node.js`. Refer to the [Node.js section](#nodejs). Install `browser-sync` globally:
+
+```
+npm install  -g browser-sync
+```
+
+After installing `browser-sync` we can run it inside any folder in our system and it will create a local server (automatically displaying the default index.html file you have in the folder).
+
+```
+browser-sync start --server --files .
+```
+
 ## Local React Environment
 
 1. Update node [nodejs.org](https://nodejs.org)
@@ -537,8 +585,14 @@ A list of apps that are generally good to use and can come in handy in day to da
 
 ### Developer Tools
 
-- [Google Chrome](https://www.google.com/intl/en/chrome/browser/): Chrome is a developer friendly browser with powerful development tools built in to it.
+- [Google Chrome](https://www.google.com/intl/en/chrome/browser/) is a developer friendly browser with powerful development tools built in to it.
+
+Install with Homebrew:
+
+```
+brew cask install google-chrome
+```
 
 ### Productivity
 
-- [Dropbox](https://www.dropbox.com/): File syncing to the cloud. It syncs files across all devices (laptop, mobile, tablet), and serves as a backup.
+- [Dropbox](https://www.dropbox.com/) File syncing to the cloud. It syncs files across all devices (laptop, mobile, tablet), and serves as a backup.
