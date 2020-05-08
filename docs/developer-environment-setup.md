@@ -90,6 +90,14 @@ For keyboards not set up for macOS, swap the *Option* and *Command* keys. Open *
 - Remove the *Display* and *Bluetooth* icons
 - Change battery to *Show percentage*
 
+### Desktop
+
+Right click on the *Desktop* and select *Show view options*.
+
+- Select *Sort by: Snap to Grid*
+- Set *Icon Size* to *48x48*
+- Set *Label position* to *Right*
+
 ## Xcode
 
 [Xcode](https://developer.apple.com/xcode/) is an integrated development environment for macOS containing a suite of software development tools developed by Apple for developing software for macOS, iOS, watchOS and tvOS.
@@ -100,7 +108,7 @@ For installing Xcode command line tools run:
 $ xcode-select --install
 ```
 
-It'll prompt you to install the command line tools. Follow the instructions and you'll have Xcode and Xcode command line tools both installed.
+It will prompt you to install the command line tools. Follow the instructions and you'll have Xcode and Xcode command line tools both installed.
 
 ## Homebrew
 
@@ -128,19 +136,42 @@ If everything is good, you should see no warnings, and a message that you are "r
 
 ### iTerm2
 
-#### Font
+[iTerm2](https://www.iterm2.com/) is an open source replacement for Apple's Terminal. It's highly customizable and comes with a lot of useful features.
 
-Install Fira Code by running:
+#### Installation
+
+Use Homebrew to download and install:
+
+```
+brew cask install iterm2
+```
+
+#### Fonts
+
+Install Fira Code and Source Code Pro by running separately:
 
 ```
 brew tap homebrew/cask-fonts && brew cask install font-fira-code
+brew tap homebrew/cask-fonts && brew cask install font-source-code-pro
 ```
 
-Fira Code repo is at [github.com/tonsky/FiraCode](https://github.com/tonsky/FiraCode).
+Set the font in iTerm2's preferences and change the size to 13pt.
 
 #### Color Theme
 
 Download `Tender.itermcolors` from [github.com/tombell/tender-iterm2](https://github.com/tombell/tender-iterm2). Go to *Preferences > Profiles > Colors* and select *Import...* from the *Color Presets...* dropdown. Import the theme and select it from the *Color Presets...* dropdown.
+
+### Zsh
+
+The Z shell (also known as zsh) is a Unix shell that is built on top of bash (the default shell for macOS) with additional features. It's recommended to use zsh over bash. It's also highly recommended to install a framework with zsh as it makes dealing with configuration, plugins and themes a lot nicer.
+
+Install zsh using Homebrew:
+
+```
+brew install zsh
+```
+
+The configuration file for zsh is called .zshrc and lives in your home folder (~/.zshrc).
 
 ### Oh My Zsh
 
@@ -178,7 +209,7 @@ When done, to test that it installed properly you can run:
 $ git --version
 ```
 
-And which git should output `/usr/local/bin/git`.
+And `which git` should output `/usr/local/bin/git`.
 
 Next, we'll define your Git user (should be the same name and email you use for [GitHub](https://github.com/):
 
