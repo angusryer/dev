@@ -15,8 +15,10 @@
     - [Git Ignore (global](git-ignore-global)
     - [Git GUIs](git-guis)
 - [Vim](#vim)
+    - [Plugins](#plugins)
+- [Visual Studio Code](#visual-studio-code)
 - [Sublime Text](#sublime-text)
-- [Sublime Text Packages](#sublime-text-packages)
+    - [Sublime Text Packages](#sublime-text-packages)
 - [Node.js](#nodejs)
 - [Browsersync](#browsersync)
 - [Local React Environment](#local-react-environment)
@@ -60,6 +62,11 @@ For keyboards not set up for macOS, swap the *Option* and *Command* keys. Open *
 - More Gestures
     - Uncheck *Notification Center*
 
+### Display
+
+- Uncheck *Automatically adjust brightness*
+- Uncheck *Show mirroring options in the menu bar when available*
+
 ### Dock
 
 - Uncheck
@@ -98,6 +105,21 @@ Right click on the *Desktop* and select *Show view options*.
 - Select *Sort by: Snap to Grid*
 - Set *Icon Size* to *48x48*
 - Set *Label position* to *Right*
+
+#### Enable key repeat in OS X
+
+Mac OS X Lion introduced a new, iOS-like context menu when you press and hold a key that enables you to choose a character from a menu of options. You can disable this feature for individual applications by issuing the following command in your terminal:
+
+```
+defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+```
+
+If you want this feature disabled globally, you can enter:
+
+```
+defaults write -g ApplePressAndHoldEnabled -bool false
+```
 
 ## Xcode
 
@@ -148,6 +170,13 @@ brew cask install iterm2
 ```
 
 #### Fonts
+
+To enable italics rendering, run:
+
+```
+{ infocmp -1 xterm-256color ; echo "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > /tmp/xterm-256color.terminfo
+tic /tmp/xterm-256color.terminfo
+```
 
 Install Fira Code and Source Code Pro by running separately:
 
@@ -398,6 +427,57 @@ Download `monokai.vim` from [github.com/crusoexia/vim-monokai](https://github.co
 
 More useful color schemes at [github.com/rafi/awesome-vim-colorschemes](https://github.com/rafi/awesome-vim-colorschemes).
 
+### Plugins
+
+- [NERDTree](https://github.com/preservim/nerdtree): A tree explorer plugin for vim.
+- [vim-commentary](https://github.com/tpope/vim-commentary): Comment stuff out. Use `gcc` to comment out a line (takes a count), `gc` to comment out the target of a motion. `gcu` uncomments a set of adjacent commented lines.
+- [Emmet-vim](https://github.com/mattn/emmet-vim): emmet-vim is a vim plug-in which provides support for expanding abbreviations similar to emmet.
+- [Vim-Prettier](https://github.com/prettier/vim-prettier): A vim plugin wrapper for prettier, pre-configured with custom default prettier settings.
+
+## Visual Studio Code
+
+### Installation
+
+To install the latest version, use Homebrew:
+
+```
+brew cask install visual-studio-code
+```
+
+### Launching from the command line
+
+You can also run VS Code from the terminal by typing 'code' after adding it to the path:
+
+- Launch VS Code.
+- Open the Command Palette and type 'shell command' to find the **Shell Command: Install 'code' command in PATH command**.
+- Restart the terminal for the new $PATH value to take effect. You'll be able to type 'code .' in any folder to start editing files in that folder.
+
+### Settings
+
+- Editor: Font Size 13
+- Editor: Tab Size 2
+- Editor: Line Numbers Relative
+
+### Estensions
+
+#### Neo Vim
+
+Neo Vim integration for Visual Studio Code. Requires Neovim version 0.4.2 or greater.
+
+- Install the Neo Vim extension via VSCode's *Extensions* tab
+- Install Neovim via Homebrew:
+
+```
+brew install neovim
+```
+
+- Set the path in the Neo Vim extension settings to `/usr/local/bin/nvim`
+- Restart Visual Studio Code
+
+##### Transitioning from Vim
+
+[nvim-from-vim](https://neovim.io/doc/user/nvim.html#nvim-from-vim)
+
 ## Sublime Text
 
 ### Set Default Editor in Terminal
@@ -408,9 +488,9 @@ Navigate to the home directory and open or create a file called `.bashrc`. Assum
 export EDITOR="/Applications/Sublime Text.app/Contents/MacOS/Sublime Text"
 ```
 
-## Sublime Text Packages
+### Sublime Text Packages
 
-### General Application
+#### General Application
 
 - [Package Control](packagecontrol.​io): A full-featured package manager.
 - [PackageResourceViewer](github.com): Plugin to assist viewing and editing package resources in Sublime Text 2 and Sublime Text 3.
@@ -418,14 +498,14 @@ export EDITOR="/Applications/Sublime Text.app/Contents/MacOS/Sublime Text"
 - [Terminus](https://github.com/randy3k/Terminus): Bring a real terminal to Sublime Text.
 - [Dictionaries](https://github.com/SublimeText/Dictionaries): Hunspell UTF8 dictionaries.
 
-### Cleaner Code
+#### Cleaner Code
 
 - [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter): The code linting framework for Sublime Text 3.
     - [SublimeLinter-html-tidy](https://github.com/SublimeLinter/SublimeLinter-html-tidy): SublimeLinter 3 plugin for html tidy.
 - [HTML-CSS-JS Prettify](https://github.com/victorporof/Sublime-HTMLPrettify): HTML, CSS, JavaScript, JSON, React/JSX and Vue code formatter for Sublime Text 2 and 3 via node.js.
 
 
-### Language Helpers
+#### Language Helpers
 
 - [Markdown Extended](https://github.com/jonschlinkert/sublime-markdown-extended): Markdown syntax highlighter.
 - [Monokai Extended](https://github.com/jonschlinkert/sublime-monokai-extended): Extends Monokai from Soda with additional syntax highlighting for Markdown, LESS, HTML, Handlebars and more.
@@ -440,23 +520,6 @@ export EDITOR="/Applications/Sublime Text.app/Contents/MacOS/Sublime Text"
 - [HTML Boilerplate](https://github.com/sloria/sublime-html5-boilerplate): A Sublime Text 2/3 snippet to generate the HTML5 Boilerplate template.
 
 ### Troubleshooting
-
-#### Enable key repeat in OS X for Sublime Text in Vim mode
-
-Mac OS X Lion introduced a new, iOS-like context menu when you press and hold a key that enables you to choose a character from a menu of options. You can disable this feature for just Sublime Text by issuing the following command in your terminal (*not* the Sublime Text console):
-
-```
-defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
-```
-
-*Note: replace com.sublimetext.3 with whichever version of Sublime Text you are running eg. 'com.sublimetext.2'*
-
-If you want this feature disabled globally, you can enter:
-
-```
-defaults write -g ApplePressAndHoldEnabled -bool false
-```
-
 
 #### Autoprefixer
 
@@ -522,13 +585,13 @@ nvm install node # "node" is an alias for the latest version
 To install a specific version of node:
 
 ```
-nvm install 6.14.4 # or 10.10.0, 8.9.1, etc
+nvm install 12.6.3 # replace with desired version
 ```
 
 Node has a schedule for long-term support (LTS). Installation supports LTS arguments.
 
 ```
-nvm install --lts=argon
+nvm install --lts=Erbium
 ```
 
 ### Using Versions
@@ -537,6 +600,12 @@ Switching between versions
 
 ```
 nvm use 12.16.X
+```
+
+### Set Default Version
+
+```
+nvm alias default 12.6.3 # replace with desired version
 ```
 
 ### Troubleshooting
@@ -558,13 +627,26 @@ sudo chown -R $USER /usr/local/lib/node_modules
 Install and run browser-sync inside of the project folder. Requires `node.js`. Refer to the [Node.js section](#nodejs). Install `browser-sync` globally:
 
 ```
-npm install  -g browser-sync
+npm install -g browser-sync
 ```
 
 After installing `browser-sync` we can run it inside any folder in our system and it will create a local server (automatically displaying the default index.html file you have in the folder).
 
 ```
 browser-sync start --server --files .
+
+# abbreviated options are accepted
+browser-sync start -sf .
+```
+
+## SASS
+
+[Sass](https://sass-lang.com/) is a stylesheet language that’s compiled to CSS. It allows you to use variables, nested rules, mixins, functions, and more, all with a fully CSS-compatible syntax. Sass helps keep large stylesheets well-organized and makes it easy to share design within and across projects.
+
+Install with Homebrew:
+
+```
+brew install sass/sass/sass
 ```
 
 ## Local React Environment
