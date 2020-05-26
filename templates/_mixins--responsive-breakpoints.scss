@@ -6,7 +6,7 @@
     @media only screen and (max-width: 330px) { @content; }
   }
 
-  @if $value == 'phone' {
+  @else if $value == 'phone' {
     @media only screen and (max-width: 750px) { @content; }
   }
 
