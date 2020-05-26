@@ -1,37 +1,70 @@
-"  -- BASIC SETUP --
-
-"  Enter the current millenium
+" Sections:
+"   - Basic setup
+"   - Editor
+"   - Text, tab and indent
+"   - Mappings and keycodes
+"   - File search
+"   - Plugin configuration
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Basic setup
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enter the current millenium
 set nocompatible
 
-"  -- DISPLAY --
+" Native third-party package loading
+packloadall
 
-"  Color Scheme
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Editor
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Color Scheme
 colorscheme monokai
 
-"  Numbers
+" Line numbers
 set number
 set relativenumber
 set numberwidth=5
 
-"  Break indent
+" Break indent
 set breakindent
 set breakindentopt=shift:4,min:40,sbr
 set showbreak=>>
 
-"  Tabs, 2 spaces
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Text, tab and indent
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use spaces instead of tabs
 set expandtab
 
-" Escape clears highlighting
-nnoremap <esc> :noh<return><esc>
+" 1 tab == 2 spaces
+set softtabstop=2
+set shiftwidth=2
 
-"  -- FINDING FILES --
+" Display of existing tabs
+set tabstop=8
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mappings and keycodes
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader=","
+
+" Wait for a key code or mapped key sequence to complete
+set timeoutlen=250
+
+" Write
+nnoremap <leader>w :w<return>
+
+" Clear highlighting
+nnoremap <leader><esc> :noh<return><esc>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" File search
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search down into subfolders
 set path+=**
  
-"  -- EMMET CONFIG --
-"  redefine trigger key
-let g:user_emmet_leader_key=','
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin configuration
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
