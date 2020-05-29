@@ -178,10 +178,11 @@ To enable italics rendering, run:
 tic /tmp/xterm-256color.terminfo
 ```
 
-Install Fira Code and Source Code Pro by running separately:
+Install preferred font:
 
 ```
 brew tap homebrew/cask-fonts && brew cask install font-fira-code
+brew tap homebrew/cask-fonts && brew cask install font-meslo-lg
 brew tap homebrew/cask-fonts && brew cask install font-source-code-pro
 ```
 
@@ -387,7 +388,13 @@ To install the latest version, use homebrew:
 brew install vim
 ```
 
+### Dotfiles
+
+Clone the approprite .vim files from [github.com/ryantoddgarza/dev/tree/master/dotfiles](https://github.com/ryantoddgarza/dev/tree/master/dotfiles) into the home directory.
+
 ### The Ultimate vimrc
+
+*This is a temporary recommendation until a solid *.vimrc* is built up.*
 
 [The Ultimate vimrc](https://github.com/amix/vimrc) is a collection of vimrc configurations to make easy the usage of vim.
 
@@ -417,7 +424,7 @@ To update the vimrc scripts, run:
 cd ~/.vim_runtime && git pull --rebase && cd -
 ```
 
-### My Configs
+#### My Configs
 
 After you have installed the setup, you can create `~/.vim_runtime/my_configs.vim` to fill in any extra configurations. Current file kept in the [dotfiles](https://github.com/ryantoddgarza/dev) directory.
 
@@ -429,8 +436,12 @@ More useful color schemes at [github.com/rafi/awesome-vim-colorschemes](https://
 
 ### Plugins
 
-- [NERDTree](https://github.com/preservim/nerdtree): A tree explorer plugin for vim.
-- [vim-commentary](https://github.com/tpope/vim-commentary): Comment stuff out. Use `gcc` to comment out a line (takes a count), `gc` to comment out the target of a motion. `gcu` uncomments a set of adjacent commented lines.
+- [vim-airline](https://github.com/vim-airline/vim-airline): Lean & mean status/tabline for vim that's light as air.
+- [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes): A collection of themes for vim-airline.
+- [Auto Pairs](https://github.com/jiangmiao/auto-pairs): Insert or delete brackets, parens, quotes in pair.
+- [commentary.vim](https://github.com/tpope/vim-commentary): Comment stuff out.
+- [surround.vim](https://github.com/tpope/vim-surround): Quoting/parenthesizing made simple.
+- [vinegar.vim](https://github.com/tpope/vim-vinegar): Combine with netrw to create a delicious salad dressing.
 - [Emmet-vim](https://github.com/mattn/emmet-vim): emmet-vim is a vim plug-in which provides support for expanding abbreviations similar to emmet.
 - [Vim-Prettier](https://github.com/prettier/vim-prettier): A vim plugin wrapper for prettier, pre-configured with custom default prettier settings.
 
