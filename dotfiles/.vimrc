@@ -21,9 +21,6 @@ set nocompatible
 
 filetype plugin indent on
 
-" Native third-party package loading
-packloadall
-
 " Section: Displaying text
 
 set lazyredraw
@@ -38,8 +35,9 @@ nnoremap <C-l> <C-W>l
 
 " Section: GUI
 
-colorscheme monokai
 syntax enable
+set background=dark
+colorscheme monokai
 
 set number
 set relativenumber
@@ -102,9 +100,6 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 
 " Section: Moving around, searching, patterns and tags
 
-nnoremap 0 ^
-nnoremap ^ 0
-
 set ignorecase
 set smartcase
 set incsearch
@@ -113,7 +108,6 @@ set incsearch
 set path+=**
 
 " Section: Filetype settings
-
 
 " Section: Plugin settings
 

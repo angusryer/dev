@@ -16,6 +16,7 @@
     - [Git GUIs](#git-guis)
 - [Vim](#vim)
     - [Plugins](#plugins)
+- [Tmux](#tmux)
 - [Visual Studio Code](#visual-studio-code)
 - [Sublime Text](#sublime-text)
     - [Sublime Text Packages](#sublime-text-packages)
@@ -382,7 +383,7 @@ I don't use them but they exist.
 
 ### Installation
 
-To install the latest version, use homebrew:
+To install the latest version, use Homebrew:
 
 ```
 brew install vim
@@ -444,6 +445,22 @@ More useful color schemes at [github.com/rafi/awesome-vim-colorschemes](https://
 - [vinegar.vim](https://github.com/tpope/vim-vinegar): Combine with netrw to create a delicious salad dressing.
 - [Emmet-vim](https://github.com/mattn/emmet-vim): emmet-vim is a vim plug-in which provides support for expanding abbreviations similar to emmet.
 - [Vim-Prettier](https://github.com/prettier/vim-prettier): A vim plugin wrapper for prettier, pre-configured with custom default prettier settings.
+
+## Tmux
+
+[Tmux](https://github.com/tmux/tmux/wiki) is a terminal multiplexer: it enables a number of terminals to be created, accessed, and controlled from a single screen. tmux may be detached from a screen and continue running in the background, then later reattached.
+
+### Installation
+
+Install tmux using Homebrew:
+
+```
+brew install tmux
+```
+
+### Dotfiles
+
+Clone the .tmux.conf file from [github.com/ryantoddgarza/dev/tree/master/dotfiles](https://github.com/ryantoddgarza/dev/tree/master/dotfiles) into the home directory.
 
 ## Visual Studio Code
 
