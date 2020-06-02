@@ -1,4 +1,4 @@
-# Developer Environment Setup
+# Develope Environment Setup
 
 ## Table of Contents
 
@@ -107,16 +107,11 @@ Right click on the *Desktop* and select *Show view options*.
 - Set *Icon Size* to *48x48*
 - Set *Label position* to *Right*
 
+### User Defaults
+
 #### Enable key repeat in OS X
 
-Mac OS X Lion introduced a new, iOS-like context menu when you press and hold a key that enables you to choose a character from a menu of options. You can disable this feature for individual applications by issuing the following command in your terminal:
-
-```
-defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
-defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-```
-
-If you want this feature disabled globally, you can enter:
+Mac OS X Lion introduced a new, iOS-like context menu when you press and hold a key that enables you to choose a character from a menu of options. You can disable this feature globally by issuing the following command in your terminal:
 
 ```
 defaults write -g ApplePressAndHoldEnabled -bool false
@@ -136,11 +131,11 @@ It will prompt you to install the command line tools. Follow the instructions an
 
 ## Homebrew
 
-[Homebrew](https://brew.sh/) calls itself The missing package manager for macOS and is an essential tool for any developer.
+[Homebrew](https://brew.sh/) calls itself "the missing package manager for macOS"" and is an essential tool for any developer.
 
 ### Installation
 
-Before you can run Homebrew you need to have the Command Line Tools for Xcode installed. It include compilers and other tools that will allow you to build things from source. See [previous section](#xcode).
+Before you can run Homebrew you need to have the Command Line Tools for Xcode installed. It includes compilers and other tools that will allow you to build things from source. See [previous section](#xcode).
 
 To install Homebrew run the following in a terminal, hit Enter, and follow the steps on the screen:
 
@@ -427,7 +422,7 @@ cd ~/.vim_runtime && git pull --rebase && cd -
 
 #### My Configs
 
-After you have installed the setup, you can create `~/.vim_runtime/my_configs.vim` to fill in any extra configurations. Current file kept in the [dotfiles](https://github.com/ryantoddgarza/dev) directory.
+After you have installed the setup, you can create `~/.vim_runtime/my_configs.vim` to fill in any extra configurations.
 
 ### Color Scheme
 

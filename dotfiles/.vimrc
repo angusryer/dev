@@ -18,6 +18,7 @@
 " Section: Basic setup
 
 set nocompatible
+set pastetoggle=<F2>
 
 filetype plugin indent on
 
@@ -38,6 +39,11 @@ nnoremap <C-l> <C-W>l
 syntax enable
 set background=dark
 colorscheme monokai
+
+highlight ExtraWhitespace ctermbg=darkred guibg=darkred
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkred guibg=darkred
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
 
 set number
 set relativenumber
@@ -73,7 +79,6 @@ set showmatch
 setglobal commentstring=#\ %s
 
 autocmd FileType js,scss,sass setlocal commentstring=//\ %s
-autocmd FileType html setlocal commentstring=<!--\ %s
 
 " Section: Maps
 
@@ -83,7 +88,6 @@ set timeoutlen=1200
 set ttimeoutlen=50
 
 nnoremap <leader>w :w<return>
-nnoremap <leader><esc> :noh<return><esc>
 
 " Section: Reading and writing files
 
@@ -108,6 +112,9 @@ set incsearch
 set path+=**
 
 " Section: Filetype settings
+
+autocmd FileType * setlocal nolinebreak
+autocmd FileType markdown,text,txt setlocal linebreak
 
 " Section: Plugin settings
 
