@@ -1,4 +1,4 @@
-# Develope Environment Setup
+# Developer Environment Setup
 
 ## Table of Contents
 
@@ -115,6 +115,14 @@ Mac OS X Lion introduced a new, iOS-like context menu when you press and hold a 
 
 ```
 defaults write -g ApplePressAndHoldEnabled -bool false
+```
+
+#### Change the default location for screenshots
+
+Create the new desired directory if it does not already exist. Then in the terminal run:
+
+```
+defaults write com.apple.screencapture location /path/to/screenshots/ && killall SystemUIServer
 ```
 
 ## Xcode
