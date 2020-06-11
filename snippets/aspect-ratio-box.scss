@@ -1,0 +1,18 @@
+// Responsive wrapper that maintains an aspect ratio
+// @param {Unit} $height - ratio height
+
+@mixin aspect-ratio-box ($height, $width: 100%) {
+  position: relative;
+  overflow: hidden;
+  width: $width;
+  height: 0;
+  padding-bottom: $height;
+}
+
+@mixin aspect-ratio-box-inside ($height: 100%, $width: 100%) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $width;
+  height: $height;
+}

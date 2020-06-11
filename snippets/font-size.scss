@@ -1,0 +1,19 @@
+// Get integer from unit size
+// @param {Unit} $n - Initial Unit
+
+@function parseVal($n) {
+  @return $n / ($n * 0 + 1);
+}
+
+// Rem font unit with px fallback and optional line height
+
+@mixin font-size($font-size, $line-height: false) {
+
+  font-size: parseVal($font-size) + px;
+  font-size: (parseVal($font-size) / 10) * 1rem;
+
+  @if $line-height {
+    line-height: $line-height;
+  }
+}
+
