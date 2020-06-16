@@ -8,7 +8,6 @@ From the terminal, decide where you want to save the app and use `mkdir` to crea
 
 ```
 npm init -y
-# the -y option is short for --yes and is equivalent of answering 'yes' to all of the questions that follow the regular `npm init` command.
 ```
 
 This automaticlly creates a new file named `package.json` that keeps track of the modules you've installed.
@@ -137,6 +136,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
+In the terminal run `npm start`.
 
 ## Conclusion
 
