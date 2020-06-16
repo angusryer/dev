@@ -19,7 +19,7 @@ When `npm install` is run, the default option is `--save`
 
 `--save` or `-S` saves package to dependencies.
 
-`--save-dev` of `-D` saves package to devDependencies.
+`--save-dev` or `-D` saves package to devDependencies.
 
 `-g` saves package globally.
 
