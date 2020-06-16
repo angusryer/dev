@@ -1,16 +1,21 @@
-# React Setup
+# Basic React Environment Setup
+
+This guide walks through the most basic manual configuration of a React environment. Consider it one small step beyond the incredibly useful [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html). I promise it's not that scary.
 
 ## NPM Init
 
-Decide where you want to save the app and use `mkdir` to make a new directory with the app name. `cd` into the new directory and type this command into the terminal:
+From the terminal, decide where you want to save the app and use `mkdir` to create a new directory with the desired app name. `cd` into the new directory and initialize npm with:
 
 ```
-$ npm init
+npm init -y
+# the -y option is short for --yes and is equivalent of answering 'yes' to all of the questions that follow the regular `npm init` command.
 ```
 
 This automaticlly creates a new file named `package.json` that keeps track of the modules you've installed.
 
-## NPM Save Locations
+### NPM Save Locations
+
+When `npm install` is run, the default option is `--save`
 
 `--save` or `-S` saves package to dependencies.
 
@@ -18,40 +23,12 @@ This automaticlly creates a new file named `package.json` that keeps track of th
 
 `-g` saves package globally.
 
-## Install React
+## Install React and ReactDOM
 
-To install the `react` module, run:
-
-```
-$ npm i -S react
-```
-
-## Install ReactDOM
-
-To install the `react-dom` module, run:
+To install the `react` and `react-dom` modules, run:
 
 ```
-$ npm i -S react-dom
-```
-
-## Install Babel
-
-Babel is a JavaScript compiler that includes the ability to compile JSX into regular JavaScript. You will only be using Babel in *development mode*.
-
-To install all three necessary Babel packages, run:
-
-```
-$ npm i -D babel-core babel-loader babel-preset-react
-```
-
-## Configure Babel
-
-In order to make Babel work, you need to write a babel configuration file in your root directory named **.babelrc.**
-
-Save the following code inside of **.babelrc.**
-
-```
-{ presets: ['react'] }
+npm install react react-dom
 ```
 
 ## Install Webpack
@@ -59,7 +36,25 @@ Save the following code inside of **.babelrc.**
 To install all three necessary Webpack packages, run:
 
 ```
-npm i -D webpack webpack-dev-server html-webpack-plugin
+npm install --save-dev webpack webpack-dev-server webpack-cli
+```
+
+Add the following script to `package.json`
+
+```
+"scripts": {
+  "start": "webpack-dev-server --open --mode development"
+}
+```
+
+## Install Babel
+
+Babel is a JavaScript compiler that includes the ability to compile JSX into regular JavaScript. You will only be using Babel in *development mode*.
+
+To install all four necessary Babel packages, run:
+
+```
+npm install --save-dev @babel/core @babel/preset-env @babel/preset-react babel-loader
 ```
 
 ## Configure Webpack
@@ -68,38 +63,85 @@ In your root directory, create a new file named **webpack.config.js**.
 
 Webpack is going to take your JavaScript, run it through some transformations, and create a new, transformed JavaScript file. In order to do this, Webpack needs to know three things:
 
-1. What JavaScript file it should transform.
-2. Which transformations it should use on that file.
-3. Where the new, transformed file should go.
+1. What JavaScript file it should transform `entry`.
+2. Where the new, transformed file should go `output`.
+3. Which transformations it should use on that file `rules`.
 
 First, in **webpack.config.js**, write:
 
 ```js
-// All of webpack’s configuration will go inside of this object literal.
-module.exports = {
-  // `entry` is the file Webpack will transform
-  entry: __dirname + '/app/index.js',
+module.exports ={
+  entry: './src/index.js',
+  output: {
+    path: __dirname + '/dist',
+    publicPath: '/',
+    filename: 'bundle.js'
+  },
+  devServer: {
+    contentBase: './',
+    publicPath: '/dist/'
+  },
   module: {
-    loaders [
+    rules: [
       {
-        test: /\.js$/, // loader will search for all files ending in “.js”
-        exclude: /node_modules/, // excluding files in the node_modules folder
-        loader: 'babel-loader'
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
       }
     ]
-  },
-
-  // Save transformed JS into a new file named build/transformed.js.
-  output: {
-    filename: 'transformed.js',
-    path: __dirname + '/build'
   }
 };
 ```
 
+## Configure Babel
+
+In order to make Babel work, you need to write a babel configuration file in your root directory named **.babelrc**.
+
+Save the following code inside of **.babelrc**.
+
+```
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ]
+}
+```
+
+## Try
+
+That's it! Let's test our configuration by creating `index.html` in the root folder and adding the following content:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My React Configuration</title>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
+```
+
+Create a new directory named `src` and inside, a file named `index.js`. This is the file that `entry` in `webpack.config.js` is referring to. Add the following content:
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+
+ReactDOM.render(
+  <React.StrictMode>
+    <h1>Hello World from My React Configuration</h1>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+```
+
+## Conclusion
+
+You will certainly want to add onto this config, but getting up and running is fairly painless. Just be sure to keep an eye on the filepaths as you structure you project folders.
 
 ## Resources
 
-- [codecademy.com/articles/react-setup-i](https://www.codecademy.com/articles/react-setup-i)
-- [codecademy.com/articles/react-setup-ii](https://www.codecademy.com/articles/react-setup-ii)
-- [codecademy.com/articles/react-setup-iii](https://www.codecademy.com/articles/react-setup-iii)
+- [Step by step React configuration from setup to deployment](https://dev.to/nsebhastian/step-by-step-react-configuration-2nma)
