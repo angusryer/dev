@@ -42,7 +42,8 @@ Add the following script to `package.json`
 
 ```
 "scripts": {
-  "start": "webpack-dev-server --open --mode development"
+  "start": "webpack-dev-server --open --mode development",
+  "build-dev": "webpack -d --mode development"
 }
 ```
 
