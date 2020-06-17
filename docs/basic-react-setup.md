@@ -119,6 +119,7 @@ That's it! Let's test our configuration by creating `index.html` in the root fol
   </head>
   <body>
     <div id="app"></div>
+    <script src="./dist/bundle.js"></script>
   </body>
 </html>
 ```
@@ -133,7 +134,7 @@ ReactDOM.render(
   <React.StrictMode>
     <h1>Hello World from My React Configuration</h1>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('app')
 );
 ```
 
