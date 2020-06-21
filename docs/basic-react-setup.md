@@ -107,9 +107,9 @@ Save the following code inside of **.babelrc**.
 }
 ```
 
-## Try
+## Develop
 
-That's it! Let's test our configuration by creating `index.html` in the root folder and adding the following content:
+Test our development configuration by creating `index.html` in the root folder and adding the following content:
 
 ```html
 <!DOCTYPE html>
@@ -118,8 +118,7 @@ That's it! Let's test our configuration by creating `index.html` in the root fol
     <title>My React Configuration</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script src="./dist/bundle.js"></script>
+    <div id="root"></div>
   </body>
 </html>
 ```
@@ -134,7 +133,7 @@ ReactDOM.render(
   <React.StrictMode>
     <h1>Hello World from My React Configuration</h1>
   </React.StrictMode>,
-  document.getElementById('app')
+  document.getElementById('root')
 );
 ```
 
@@ -142,7 +141,7 @@ In the terminal run `npm start`.
 
 ## Conclusion
 
-You will certainly want to add onto this config, but getting up and running is fairly painless. Just be sure to keep an eye on the filepaths as you structure you project folders.
+*Note that this configuration thus far lacks build and test commands. Until updated, make use of the resources below.*
 
 ## Resources
 
