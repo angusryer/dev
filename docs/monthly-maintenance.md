@@ -2,6 +2,27 @@
 
 A list of procedures to ensure that the local environment is operating at its full potential.
 
+## Update Global Node Packages
+
+TLDR: Update all global packages by running the following in the terminal:
+
+```sh
+npm update -g
+```
+or,
+
+To check which packages have available updates run:
+
+```sh
+npm outdated -g --depth=0
+```
+
+To update a specific package, run:
+
+```sh
+npm update -g <package>
+```
+
 ## 1. Disable unwanted startup processes
 
 Some newly installed applications are automatically set to run when starting your machine and run in the background. They can consume battery, reducing its duration and decreasing device performance. To disable those processes, you can access the Users & Groups settings in the System Preferences.
@@ -42,3 +63,4 @@ Opening a lot of apps or web pages on the same session without reboot your MacBo
 sudo purge
 ```
 Enter password when prompted.
+
