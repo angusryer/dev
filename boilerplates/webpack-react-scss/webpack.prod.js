@@ -1,5 +1,6 @@
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js')
+const common = require('./webpack.common.js');
+const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
@@ -30,6 +31,15 @@ module.exports = merge(common, {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                autoprefixer({})
+              ]
+            }
+          },
         ],
       },
     ],
