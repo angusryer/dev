@@ -6,7 +6,7 @@ It's a good idea to keep the `.vim` directory version-controlled along with your
 
 To enable submodules:
 
-```sh
+```
 cd ~/.vim
 git submodule init
 ```
@@ -15,7 +15,7 @@ git submodule init
 
 To install plugins using Vim 8's native package system run:
 
-```sh
+```
 git submodule add <package-url> <desired-filepath>
 
 # for example
@@ -26,7 +26,7 @@ git submodule add https://github.com/username/reponame.git pack/plugins/start/re
 
 To remove `reponame`:
 
-```sh
+```
 cd ~/.vim
 git submodule deinit pack/plugins/start/reponame
 git rm -r pack/plugins/start/reponame
@@ -37,14 +37,14 @@ rm -r .git/modules/pack/plugins/start/reponame
 
 To update an individual plugin:
 
-```sh
+```
 cd ~/.vim/pack/plugins/start/reponame
 git pull origin master
 ```
 
 To update all plugins:
 
-```sh
+```
 cd ~/.vim
 git submodule foreach git pull origin master
 ```
@@ -54,6 +54,6 @@ git submodule foreach git pull origin master
 
 Clone the repository recursively to clone plugins:
 
-```sh
+```
 git clone --recursive-submodules https://github.com/your_username/your_reponame.git
 ```
