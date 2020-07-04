@@ -55,5 +55,5 @@ git submodule foreach git pull origin master
 Clone the repository recursively to clone plugins:
 
 ```
-git clone --recursive-submodules https://github.com/your_username/your_reponame.git
+git clone --recurse-submodules https://github.com/your_username/your_reponame.git
 ```
