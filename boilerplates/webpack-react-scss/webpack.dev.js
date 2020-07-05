@@ -1,5 +1,6 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js')
+const autoprefixer = require('autoprefixer');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -26,6 +27,15 @@ module.exports = merge(common, {
         use: [
           'style-loader',
           'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                autoprefixer({})
+              ]
+            }
+          },
           {
             loader: 'sass-loader',
             options: {
