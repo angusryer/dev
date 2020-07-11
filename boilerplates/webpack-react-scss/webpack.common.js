@@ -13,7 +13,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'webpack',
+      title: 'jae',
     }),
     new HtmlWebpackPartialsPlugin({
       path: path.join(__dirname, './partials/body.html')
