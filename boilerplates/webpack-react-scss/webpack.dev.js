@@ -1,6 +1,6 @@
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js')
 const autoprefixer = require('autoprefixer');
+const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -21,6 +21,13 @@ module.exports = merge(common, {
         },
       },
       {
+        test: /worker\.js$/,
+        use: [
+          'worker-loader',
+          'babel-loader',
+        ],
+      },
+      {
         test: /\.(css|scss)$/,
         use: [
           'style-loader',
@@ -34,11 +41,11 @@ module.exports = merge(common, {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-	      sourceMap: true,
+              sourceMap: true,
               plugins: () => [
-                autoprefixer({})
-              ]
-            }
+                autoprefixer({}),
+              ],
+            },
           },
           {
             loader: 'sass-loader',
@@ -51,4 +58,3 @@ module.exports = merge(common, {
     ],
   },
 });
-
