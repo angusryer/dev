@@ -1,11 +1,13 @@
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js')
+const autoprefixer = require('autoprefixer');
+const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   mode: 'development',
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   devServer: {
     contentBase: './dist',
+    historyApiFallback: true,
     compress: true,
     open: true,
   },
@@ -16,16 +18,35 @@ module.exports = merge(common, {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/react'],
-          },
         },
+      },
+      {
+        test: /worker\.js$/,
+        use: [
+          'worker-loader',
+          'babel-loader',
+        ],
       },
       {
         test: /\.(css|scss)$/,
         use: [
           'style-loader',
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              sourceMap: true,
+              plugins: () => [
+                autoprefixer({}),
+              ],
+            },
+          },
           {
             loader: 'sass-loader',
             options: {
@@ -37,4 +58,3 @@ module.exports = merge(common, {
     ],
   },
 });
-

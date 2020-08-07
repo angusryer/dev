@@ -1,10 +1,11 @@
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js')
+const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   mode: 'production',
-  devtool: 'source-map',
+  devtool: 'nosources-source-map',
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -18,21 +19,36 @@ module.exports = merge(common, {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/react'],
-          },
         },
       },
       {
         test: /\.(css|scss)$/,
         use: [
-          'style-loader',
           MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              sourceMap: true,
+              plugins: () => [
+                autoprefixer({}),
+              ],
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
         ],
       },
     ],
   },
 });
-
